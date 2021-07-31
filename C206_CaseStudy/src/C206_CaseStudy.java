@@ -3,10 +3,17 @@ import java.util.ArrayList;
 public class C206_CaseStudy {
 
 	private static ArrayList<FoodItems> itemsList = new ArrayList<FoodItems>();
+	private static ArrayList<Promotions> promoList = new ArrayList<Promotions>();
 	
 	public static void main(String[] args) {
+		//Food Items
 		itemsList.add(new FoodItems(1, "Grilled Chicken Chop", 2.50));
 		itemsList.add(new FoodItems(2, "Fried Chicken Cutlet", 2.80));
+		
+		//Promotions
+		promoList.add(new Promotions(1, "Laksa", 20, 2));
+		promoList.add(new Promotions(2, "Nasi Lemak", 10, 3));
+		
 		int option = 0;
 
 		while (option != 6) {
@@ -15,14 +22,19 @@ public class C206_CaseStudy {
 			option = Helper.readInt("Enter an option > ");
 			
 			if (option == 1) {
+				//Stalls
 				manageStalls();
 			} else if (option == 2) {
+				//Food Items
 				manageFoodItems();
 			} else if (option == 3) {
+				//Purchase Orders
 				managePurchaseOrders();
 			} else if (option == 4) {
+				//Promotions
 				managePromotions();
 			} else if (option == 5) {
+				//Orders
 				manageOrders();
 			} else if (option == 6) {
 				System.out.println("Thanks for using this application!");
@@ -128,7 +140,72 @@ public class C206_CaseStudy {
 	}
 	// ================================================================== FOR MANAGE FOOD ITEMS (HERMAN) ============================================================================
 	public static void managePromotions() {
+		int choice = -1;
+		while (choice != 4) {
 	
+			setHeader("Manage Promotions");
+			System.out.println("1. View Promotions");
+			System.out.println("2. Add Promotion");
+			System.out.println("3. Delete Promotion");
+			System.out.println("4. Back to Canteen Automation System (CAS)");
+			choice = Helper.readInt("Enter option > ");
+			System.out.println();
+			if (choice == 1) {
+				viewPromotions();
+			}
+			else if (choice == 2) {
+				String name = Helper.readString("Enter Food Name > ");
+				int percentage = Helper.readInt("Enter discount percentage > ");
+				int days = Helper.readInt("Enter duration of promotion > ");
+				
+				promoList.add(new Promotions(promoList.size() + 1, name, percentage, days));
+				System.out.println(String.format("Promotion for " + name + " added!\n"));
+			}
+			else if (choice == 3) {
+				viewPromotions();
+				int id = Helper.readInt("Enter Promotion ID to delete > ");
+				int flag = -1;
+				
+				for (int i = 0 ; i < promoList.size(); i++) {
+					if (promoList.get(i).getPromotionID() == id) {
+						promoList.remove(i);
+						flag = 1;
+					}
+				}
+				if (flag == -1) {
+					System.out.println("Invalid Promotion ID entered!");
+				}
+				else {
+					for (Promotions pr : promoList) {
+						if (pr.getPromotionID() > id) {
+							pr.setPromotionID(pr.getPromotionID()-1);
+						}
+					}
+					System.out.println("Food ID " + id+ " Deleted!");
+				}
+				
+			}
+			else if (choice == 4) {
+				System.out.println("Back to Home");
+			}
+			else {
+				System.out.println("Invalid choice. Please try again");
+			}
+		}
+	}
+	
+	public static void viewPromotions() {
+		String output = String.format("%-10s %-20s %-10s %s\n", "PROMOTION ID", " FOOD ITEM", "OFFER(%)", "DURATION(DAYS)");
+		
+		for (Promotions pr : promoList) {
+			if (promoList.size() == 0) {
+				output = "There are no food items available.";
+			}
+			else {
+				output += String.format("%-13d %-19s %-10d %d\n", pr.getPromotionID(), pr.getPromotionName(), pr.getPromotionPercent(), pr.getPromotionDays());
+			}
+		}
+		System.out.println(output);
 	}
 	// ================================================================== FOR MANAGE FOOD ITEMS (SARA) ============================================================================
 	public static void manageOrders() {
