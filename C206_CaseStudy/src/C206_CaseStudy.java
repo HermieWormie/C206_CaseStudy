@@ -201,14 +201,14 @@ public class C206_CaseStudy {
 	}
 	
 	public static void viewPromotions() {
-		String output = String.format("%-10s %-20s %-10s %s\n", "PROMOTION ID", " FOOD ITEM", "OFFER(%)", "DURATION(DAYS)");
+		String output = String.format("%-15s %-21s %-15s %s\n", "PROMOTION ID", " FOOD ITEM", "OFFER(%)", "DURATION(DAYS)");
 		
 		for (Promotions pr : promoList) {
 			if (promoList.size() == 0) {
 				output = "There are no food items available.";
 			}
 			else {
-				output += String.format("%-13d %-19s %-10d %d\n", pr.getPromotionID(), pr.getPromotionName(), pr.getPromotionPercent(), pr.getPromotionDays());
+				output += String.format("%-16d %-20s %-15d %d\n", pr.getPromotionID(), pr.getPromotionName(), pr.getPromotionPercent(), pr.getPromotionDays());
 			}
 		}
 		System.out.println(output);
