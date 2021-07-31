@@ -6,7 +6,7 @@ public class C206_CaseStudy {
 
 		while (option != 6) {
 
-			C206_CaseStudy.menu();
+			menu();
 			option = Helper.readInt("Enter an option > ");
 
 			if (option == 1) {
