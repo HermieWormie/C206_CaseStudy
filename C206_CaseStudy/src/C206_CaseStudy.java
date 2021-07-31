@@ -7,8 +7,8 @@ public class C206_CaseStudy {
 	
 	public static void main(String[] args) {
 		//Food Items
-		itemsList.add(new FoodItems(1, "Grilled Chicken Chop", 2.50));
-		itemsList.add(new FoodItems(2, "Fried Chicken Cutlet", 2.80));
+		itemsList.add(new FoodItems(1, "Grilled Chicken Chop", 4));
+		itemsList.add(new FoodItems(2, "Fried Chicken Cutlet", 4));
 		
 		//Promotions
 		promoList.add(new Promotions(1, "Laksa", 20, 2));
@@ -84,10 +84,16 @@ public class C206_CaseStudy {
 			}
 			else if (choice == 2) {
 				String name = Helper.readString("Enter Food Name > ");
-				double price = Helper.readDouble("Enter Food Price > ");
+				int price = Helper.readInt("Enter Food Price > ");
 				
-				itemsList.add(new FoodItems(itemsList.size() + 1, name, price));
-				System.out.println(String.format("Food Item, %s added!\n", name));
+				if (price > 2 && price < 16) {
+					itemsList.add(new FoodItems(itemsList.size() + 1, name, price));
+					System.out.println(String.format("Food Item, %s added!\n", name));
+				}
+				else {
+					System.out.println("Food price limit ranges from $3 - $15. Please try again.");
+				}
+				
 			}
 			else if (choice == 3) {
 				viewFoodItems();
