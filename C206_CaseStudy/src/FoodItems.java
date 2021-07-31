@@ -24,5 +24,8 @@ public class FoodItems {
 	}
 	public int getFoodId() {
 		return foodId;
-	}	
+	}
+	public void setFoodId(int foodId) {
+		this.foodId = foodId;
+	}
 }
