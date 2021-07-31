@@ -1,8 +1,14 @@
 
 public class FoodItems {
-	private String foodId;
+	private int foodId;
 	private String foodName;
 	private double foodPrice;
+	
+	public FoodItems(int foodId, String foodName, double foodPrice) {
+		this.foodId = foodId;
+		this.foodName = foodName;
+		this.foodPrice = foodPrice;
+	}
 	
 	public String getFoodName() {
 		return foodName;
@@ -16,10 +22,7 @@ public class FoodItems {
 	public void setFoodPrice(double foodPrice) {
 		this.foodPrice = foodPrice;
 	}
-	public String getFoodId() {
+	public int getFoodId() {
 		return foodId;
-	}
-	public void display() {
-		System.out.println(String.format("%s %.2f", foodName, foodPrice));
 	}	
 }
