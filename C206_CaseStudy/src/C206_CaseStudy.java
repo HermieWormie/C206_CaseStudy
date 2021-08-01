@@ -11,8 +11,8 @@ public class C206_CaseStudy {
 		itemsList.add(new FoodItems(2, "Fried Chicken Cutlet", 6));
 		
 		//Promotions
-		promoList.add(new Promotions(1, "Laksa", 20, 2));
-		promoList.add(new Promotions(2, "Nasi Lemak", 10, 3));
+		promoList.add(new Promotions(1, 6,"Laksa", 20, "Monday"));
+		promoList.add(new Promotions(2, 4,"Nasi Lemak", 10, "Tuesday"));
 		
 		int option = 0;
 
@@ -186,11 +186,12 @@ public class C206_CaseStudy {
 			}
 			else if (choice == 2) {
 				String name = Helper.readString("Enter Food Name > ");
+				int stall = Helper.readInt("Enter Stall ID > ");
 				int percentage = Helper.readInt("Enter discount percentage > ");
-				int days = Helper.readInt("Enter duration of promotion > ");
+				String day = Helper.readString("Enter day of the week > ");
 				
-				promoList.add(new Promotions(promoList.size() + 1, name, percentage, days));
-				System.out.println(String.format("Promotion for " + name + " added!\n"));
+				promoList.add(new Promotions(promoList.size() + 1, stall, name, percentage, day));
+				System.out.println(String.format("Promotion for " + name + " at stall number " + stall + " on "+ day + " added!\n"));
 			}
 			else if (choice == 3) {
 				viewPromotions();
@@ -226,14 +227,14 @@ public class C206_CaseStudy {
 	}
 	
 	public static void viewPromotions() {
-		String output = String.format("%-15s %-21s %-15s %s\n", "PROMOTION ID", " FOOD ITEM", "OFFER(%)", "DURATION(DAYS)");
+		String output = String.format("%-15s %-14s %-16s %-10s %s\n", "PROMOTION ID", "STALL NUMBER",  " FOOD ITEM", "OFFER(%)", "DAY OF THE WEEK");
 		
 		for (Promotions pr : promoList) {
 			if (promoList.size() == 0) {
 				output = "There are no food items available.";
 			}
 			else {
-				output += String.format("%-16d %-20s %-15d %d\n", pr.getPromotionID(), pr.getPromotionName(), pr.getPromotionPercent(), pr.getPromotionDays());
+				output += String.format("%-15d %-15d %-15s %-10d %s\n", pr.getPromotionID(), pr.getStallID(), pr.getfoodName(), pr.getPromotionPercent(), pr.getDOTW());
 			}
 		}
 		System.out.println(output);

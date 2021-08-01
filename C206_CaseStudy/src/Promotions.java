@@ -1,15 +1,17 @@
 
 public class Promotions {
 	private int promotionID;
+	private int stallID;
 	private String foodName;
 	private int promotionPercent;
-	private int promotionDays;
+	private String promotionDOTW;
 	
-	public Promotions(int promotionID, String foodName, int promotionPercent, int promotionDays) {
+	public Promotions(int promotionID, int stallID, String foodName, int promotionPercent, String promotionDOTW) {
 		this.promotionID = promotionID;
+		this.stallID = stallID;
 		this.foodName = foodName;
 		this.promotionPercent = promotionPercent;
-		this.promotionDays = promotionDays;
+		this.promotionDOTW = promotionDOTW;
 	}
 	
 	//ID
@@ -22,11 +24,11 @@ public class Promotions {
 	}
 	
 	//Name
-	public String getPromotionName() {
+	public String getfoodName() {
 		return foodName;
 	}
 
-	public void setPromotionName(String promotionName) {
+	public void setfoodName(String promotionName) {
 		this.foodName = promotionName;
 	}
 	
@@ -40,12 +42,21 @@ public class Promotions {
 	}
 	
 	//Duration
-	public int getPromotionDays() {
-		return promotionDays;
+	public String getDOTW() {
+		return promotionDOTW;
 	}
 	
-	public void setPromotionDays(int promotionDays) {
-		this.promotionDays = promotionDays;
+	public void setDOTW(String promotionDOTW) {
+		this.promotionDOTW = promotionDOTW;
+	}
+	
+	//Stall ID
+	public int getStallID() {
+		return stallID;
+	}
+
+	public void setStallID(int stallID) {
+		this.stallID = stallID;
 	}
 	
 	
