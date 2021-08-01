@@ -8,7 +8,7 @@ public class C206_CaseStudy {
 		//Food Items
 		ArrayList<FoodItems> itemsList = new ArrayList<FoodItems>();
 		itemsList.add(new FoodItems(1, "Grilled Chicken Chop", 4));
-		itemsList.add(new FoodItems(2, "Fried Chicken Cutlet", 4));
+		itemsList.add(new FoodItems(2, "Fried Chicken Cutlet", 6));
 		
 		//Promotions
 		promoList.add(new Promotions(1, "Laksa", 20, 2));
@@ -103,19 +103,19 @@ public class C206_CaseStudy {
 		String output = "";
 		
 		for (FoodItems fi : itemsList) {
-			if (itemsList.size() == 0) {
-				output = "There are no food items available.";
-			}
-			else {
-				output += String.format("%-10d %-25s $%.2f\n", fi.getFoodId(), fi.getFoodName(), fi.getFoodPrice());
-			}
+			output += String.format("%-10d %-25s $%d\n", fi.getFoodId(), fi.getFoodName(), fi.getFoodPrice());
 		}
 		return output;
 	}
 	
 	public static void viewFoodItems(ArrayList<FoodItems> itemsList) {
 		String output = String.format("%-10s %-25s %s\n", "FOOD ID", "NAME", "PRICE");
-		output += retrieveAllFoodItems(itemsList);
+		if (itemsList.size() == 0) {
+			output = "There are no food items available.";
+		}
+		else {
+			output += retrieveAllFoodItems(itemsList);
+		}
 		System.out.println(output);
 	}
 	//-------------------------------------------------------------------------------------
@@ -128,13 +128,18 @@ public class C206_CaseStudy {
 			return fi;
 		}
 		else {
-			System.out.println("Food price limit ranges from $3 - $15. Please try again.");
 			return null;
 		}
 	}
 	public static void addFoodItems(ArrayList<FoodItems> itemsList, FoodItems fi) {
-		itemsList.add(fi);
-		System.out.println(String.format("Food Item added!\n"));
+		if (fi == null) {
+			System.out.println("Food price limit ranges from $3 - $15. Please try again.");
+		}
+		else {
+			itemsList.add(fi);
+			System.out.println(String.format("Food Item added!\n"));
+		}
+		
 	}
 	//-------------------------------------------------------------------------------------
 	public static void deleteFoodItems(ArrayList<FoodItems> itemsList) {
