@@ -16,7 +16,7 @@ public class FoodItems {
 	public void setFoodName(String foodName) {
 		this.foodName = foodName;
 	}
-	public double getFoodPrice() {
+	public int getFoodPrice() {
 		return foodPrice;
 	}
 	public void setFoodPrice(int foodPrice) {
