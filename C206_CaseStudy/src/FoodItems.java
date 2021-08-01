@@ -2,9 +2,9 @@
 public class FoodItems {
 	private int foodId;
 	private String foodName;
-	private double foodPrice;
+	private int foodPrice;
 	
-	public FoodItems(int foodId, String foodName, double foodPrice) {
+	public FoodItems(int foodId, String foodName, int foodPrice) {
 		this.foodId = foodId;
 		this.foodName = foodName;
 		this.foodPrice = foodPrice;
@@ -19,7 +19,7 @@ public class FoodItems {
 	public double getFoodPrice() {
 		return foodPrice;
 	}
-	public void setFoodPrice(double foodPrice) {
+	public void setFoodPrice(int foodPrice) {
 		this.foodPrice = foodPrice;
 	}
 	public int getFoodId() {
