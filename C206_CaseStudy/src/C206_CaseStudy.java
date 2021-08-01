@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
-	private static ArrayList<FoodItems> itemsList = new ArrayList<FoodItems>();
 	private static ArrayList<Promotions> promoList = new ArrayList<Promotions>();
 	
 	public static void main(String[] args) {
 		//Food Items
+		ArrayList<FoodItems> itemsList = new ArrayList<FoodItems>();
 		itemsList.add(new FoodItems(1, "Grilled Chicken Chop", 4));
 		itemsList.add(new FoodItems(2, "Fried Chicken Cutlet", 4));
 		
@@ -23,7 +23,7 @@ public class C206_CaseStudy {
 			
 			if (option == 1) {
 				//Stalls
-				manageStalls();
+				manageStalls(itemsList);
 			} else if (option == 2) {
 				//Food Items
 				manageFoodItems();
@@ -68,7 +68,7 @@ public class C206_CaseStudy {
 		
 	}
 	// ================================================================== FOR MANAGE FOOD ITEMS (WANYING) ============================================================================
-	public static void manageFoodItems() {
+	public static void manageFoodItems(ArrayList<FoodItems> itemsList) {
 				
 		int choice = -1;
 		while (choice != 4) {
@@ -80,43 +80,14 @@ public class C206_CaseStudy {
 			choice = Helper.readInt("Enter option > ");
 			System.out.println();
 			if (choice == 1) {
-				viewFoodItems();
+				viewFoodItems(itemsList);
 			}
 			else if (choice == 2) {
-				String name = Helper.readString("Enter Food Name > ");
-				int price = Helper.readInt("Enter Food Price > ");
-				
-				if (price > 2 && price < 16) {
-					itemsList.add(new FoodItems(itemsList.size() + 1, name, price));
-					System.out.println(String.format("Food Item, %s added!\n", name));
-				}
-				else {
-					System.out.println("Food price limit ranges from $3 - $15. Please try again.");
-				}
-				
+				addFoodItems(itemsList);
 			}
 			else if (choice == 3) {
-				viewFoodItems();
-				int id = Helper.readInt("Enter Food ID to delete > ");
-				boolean match = false;
-				for (int i = 0 ; i < itemsList.size(); i++) {
-					if (itemsList.get(i).getFoodId() == id) {
-						itemsList.remove(i);
-						match = true;
-					}
-				}
-				if (!match) {
-					System.out.println("Invalid Food ID entered!");
-				}
-				else {
-					for (FoodItems fi : itemsList) {
-						if (fi.getFoodId() > id) {
-							fi.setFoodId(fi.getFoodId()-1);
-						}
-					}
-					System.out.println("Food ID " + id+ " Deleted!");
-				}
-				
+				viewFoodItems(itemsList);
+				deleteFoodItems(itemsList);
 			}
 			else if (choice == 4) {
 				System.out.println("Back to Home");
@@ -126,7 +97,7 @@ public class C206_CaseStudy {
 			}
 		}
 	}
-	public static void viewFoodItems() {
+	public static void viewFoodItems(ArrayList<FoodItems> itemsList) {
 		String output = String.format("%-10s %-25s %s\n", "FOOD ID", "NAME", "PRICE");
 		
 		for (FoodItems fi : itemsList) {
@@ -138,6 +109,42 @@ public class C206_CaseStudy {
 			}
 		}
 		System.out.println(output);
+	}
+	
+	public static void addFoodItems(ArrayList<FoodItems> itemsList) {
+		String name = Helper.readString("Enter Food Name > ");
+		int price = Helper.readInt("Enter Food Price > ");
+		
+		if (price > 2 && price < 16) {
+			itemsList.add(new FoodItems(itemsList.size() + 1, name, price));
+			System.out.println(String.format("Food Item, %s added!\n", name));
+		}
+		else {
+			System.out.println("Food price limit ranges from $3 - $15. Please try again.");
+		}
+	}
+	
+	public static void deleteFoodItems(ArrayList<FoodItems> itemsList) {
+		int id = Helper.readInt("Enter Food ID to delete > ");
+		boolean match = false;
+		for (int i = 0 ; i < itemsList.size(); i++) {
+			if (itemsList.get(i).getFoodId() == id) {
+				itemsList.remove(i);
+				match = true;
+			}
+		}
+		if (!match) {
+			System.out.println("Invalid Food ID entered!");
+		}
+		else {
+			for (FoodItems fi : itemsList) {
+				if (fi.getFoodId() > id) {
+					fi.setFoodId(fi.getFoodId()-1);
+				}
+			}
+			System.out.println("Food ID " + id+ " Deleted!");
+		}
+		
 	}
 	
 	// ================================================================== FOR MANAGE FOOD ITEMS (EDISON) ============================================================================
