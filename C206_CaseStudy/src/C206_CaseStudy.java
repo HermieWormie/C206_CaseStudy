@@ -99,8 +99,8 @@ public class C206_CaseStudy {
 		}
 	}
 	//-------------------------------------------------------------------------------------
-	public static void viewFoodItems(ArrayList<FoodItems> itemsList) {
-		String output = String.format("%-10s %-25s %s\n", "FOOD ID", "NAME", "PRICE");
+	public static String retrieveAllFoodItems(ArrayList<FoodItems> itemsList) {
+		String output = "";
 		
 		for (FoodItems fi : itemsList) {
 			if (itemsList.size() == 0) {
@@ -110,6 +110,12 @@ public class C206_CaseStudy {
 				output += String.format("%-10d %-25s $%.2f\n", fi.getFoodId(), fi.getFoodName(), fi.getFoodPrice());
 			}
 		}
+		return output;
+	}
+	
+	public static void viewFoodItems(ArrayList<FoodItems> itemsList) {
+		String output = String.format("%-10s %-25s %s\n", "FOOD ID", "NAME", "PRICE");
+		output += retrieveAllFoodItems(itemsList);
 		System.out.println(output);
 	}
 	//-------------------------------------------------------------------------------------
