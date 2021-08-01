@@ -23,10 +23,10 @@ public class C206_CaseStudy {
 			
 			if (option == 1) {
 				//Stalls
-				manageStalls(itemsList);
+				manageStalls();
 			} else if (option == 2) {
 				//Food Items
-				manageFoodItems();
+				manageFoodItems(itemsList);
 			} else if (option == 3) {
 				//Purchase Orders
 				managePurchaseOrders();
@@ -83,7 +83,8 @@ public class C206_CaseStudy {
 				viewFoodItems(itemsList);
 			}
 			else if (choice == 2) {
-				addFoodItems(itemsList);
+				FoodItems fi = inputFoodItems(itemsList);
+				addFoodItems(itemsList, fi);
 			}
 			else if (choice == 3) {
 				viewFoodItems(itemsList);
@@ -97,6 +98,7 @@ public class C206_CaseStudy {
 			}
 		}
 	}
+	//-------------------------------------------------------------------------------------
 	public static void viewFoodItems(ArrayList<FoodItems> itemsList) {
 		String output = String.format("%-10s %-25s %s\n", "FOOD ID", "NAME", "PRICE");
 		
@@ -110,20 +112,25 @@ public class C206_CaseStudy {
 		}
 		System.out.println(output);
 	}
-	
-	public static void addFoodItems(ArrayList<FoodItems> itemsList) {
+	//-------------------------------------------------------------------------------------
+	public static FoodItems inputFoodItems(ArrayList<FoodItems> itemsList) {
 		String name = Helper.readString("Enter Food Name > ");
 		int price = Helper.readInt("Enter Food Price > ");
 		
 		if (price > 2 && price < 16) {
-			itemsList.add(new FoodItems(itemsList.size() + 1, name, price));
-			System.out.println(String.format("Food Item, %s added!\n", name));
+			FoodItems fi = new FoodItems(itemsList.size() + 1, name, price);
+			return fi;
 		}
 		else {
 			System.out.println("Food price limit ranges from $3 - $15. Please try again.");
+			return null;
 		}
 	}
-	
+	public static void addFoodItems(ArrayList<FoodItems> itemsList, FoodItems fi) {
+		itemsList.add(fi);
+		System.out.println(String.format("Food Item added!\n"));
+	}
+	//-------------------------------------------------------------------------------------
 	public static void deleteFoodItems(ArrayList<FoodItems> itemsList) {
 		int id = Helper.readInt("Enter Food ID to delete > ");
 		boolean match = false;
