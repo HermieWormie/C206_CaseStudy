@@ -190,8 +190,16 @@ public class C206_CaseStudy {
 				int percentage = Helper.readInt("Enter discount percentage > ");
 				String day = Helper.readString("Enter day of the week > ");
 				
-				promoList.add(new Promotions(promoList.size() + 1, stall, name, percentage, day));
-				System.out.println(String.format("Promotion for " + name + " at stall number " + stall + " on "+ day + " added!\n"));
+				for(int i = 0; i < promoList.size(); i++) {
+					if(stall == promoList.get(i).getStallID() && day.equalsIgnoreCase(promoList.get(i).getDOTW())) {
+						System.out.println("A stall can only have 1 promotion for 1 food item per day");
+					}
+					else {
+						promoList.add(new Promotions(promoList.size() + 1, stall, name, percentage, day));
+						System.out.println(String.format("Promotion for " + name + " at stall number " + stall + " on "+ day + " added!\n"));
+					}
+				}
+				
 			}
 			else if (choice == 3) {
 				viewPromotions();
