@@ -1,6 +1,13 @@
 
 public class Orders {
-	private int quantity;
-	private int orderid;
+	
+	private int orderId;
+	private int foodId;
+	private int foodPrice;
+	private int description;
+	
 
+
+	
+	
 }
