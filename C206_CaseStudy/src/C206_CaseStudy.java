@@ -2,8 +2,6 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
-	private static ArrayList<Promotions> promoList = new ArrayList<Promotions>();
-
 	public static void main(String[] args) {
 		// Food Items
 		ArrayList<FoodItems> itemsList = new ArrayList<FoodItems>();
@@ -11,6 +9,7 @@ public class C206_CaseStudy {
 		itemsList.add(new FoodItems(2, "Fried Chicken Cutlet", 6));
 
 		// Promotions
+		ArrayList<Promotions> promoList = new ArrayList<Promotions>();
 		promoList.add(new Promotions(1, 6, "Laksa", 20, "Monday"));
 		promoList.add(new Promotions(2, 4, "Nasi Lemak", 10, "Tuesday"));
 
@@ -32,7 +31,7 @@ public class C206_CaseStudy {
 				managePurchaseOrders();
 			} else if (option == 4) {
 				// Promotions
-				managePromotions();
+				managePromotions(promoList);
 			} else if (option == 5) {
 				// Orders
 				manageOrders();
@@ -67,7 +66,7 @@ public class C206_CaseStudy {
 	// MANAGE STALLS (DON)
 	// ===============================================================================
 	public static void manageStalls() {
-		
+
 	}
 
 	// ================================================================== FOR MANAGE
@@ -176,7 +175,7 @@ public class C206_CaseStudy {
 	// ================================================================== FOR MANAGE
 	// FOOD ITEMS (HERMAN)
 	// ============================================================================
-	public static void managePromotions() {
+	public static void managePromotions(ArrayList<Promotions> promoList) {
 		int choice = -1;
 		while (choice != 4) {
 
@@ -188,32 +187,13 @@ public class C206_CaseStudy {
 			choice = Helper.readInt("Enter option > ");
 			System.out.println();
 			if (choice == 1) {
-				viewPromotions();
+				viewPromotions(promoList);
 			} else if (choice == 2) {
 				Promotions pr = inputPromoItems(promoList);
 				addPromotionItems(promoList, pr);
 			} else if (choice == 3) {
-				viewPromotions();
-				int id = Helper.readInt("Enter Promotion ID to delete > ");
-				int flag = -1;
-
-				for (int i = 0; i < promoList.size(); i++) {
-					if (promoList.get(i).getPromotionID() == id) {
-						promoList.remove(i);
-						flag = 1;
-					}
-				}
-				if (flag == -1) {
-					System.out.println("Invalid Promotion ID entered!");
-				} else {
-					for (Promotions pr : promoList) {
-						if (pr.getPromotionID() > id) {
-							pr.setPromotionID(pr.getPromotionID() - 1);
-						}
-					}
-					System.out.println("Food ID " + id + " Deleted!");
-				}
-
+				viewPromotions(promoList);
+				deletePromotions(promoList);
 			} else if (choice == 4) {
 				System.out.println("Back to Home");
 			} else {
@@ -222,7 +202,7 @@ public class C206_CaseStudy {
 		}
 	}
 
-	public static void viewPromotions() {
+	public static void viewPromotions(ArrayList<Promotions> promoList) {
 		String output = String.format("%-15s %-14s %-16s %-10s %s\n", "PROMOTION ID", "STALL NUMBER", " FOOD ITEM",
 				"OFFER(%)", "DAY OF THE WEEK");
 
@@ -252,9 +232,32 @@ public class C206_CaseStudy {
 			}
 		}
 		if (flag = false) {
-			 pr = null;
+			pr = null;
 		}
 		return pr;
+	}
+
+	public static void deletePromotions(ArrayList<Promotions> promoList) {
+		int id = Helper.readInt("Enter Promotion ID to delete > ");
+		int flag = -1;
+
+		for (int i = 0; i < promoList.size(); i++) {
+			if (promoList.get(i).getPromotionID() == id) {
+				promoList.remove(i);
+				flag = 1;
+			}
+		}
+		if (flag == -1) {
+			System.out.println("Invalid Promotion ID entered!");
+		} else {
+			for (Promotions pr : promoList) {
+				if (pr.getPromotionID() > id) {
+					pr.setPromotionID(pr.getPromotionID() - 1);
+				}
+			}
+			System.out.println("Food ID " + id + " Deleted!");
+		}
+
 	}
 
 	public static void addPromotionItems(ArrayList<Promotions> promoList, Promotions pr) {
@@ -265,6 +268,28 @@ public class C206_CaseStudy {
 			System.out.println(String.format("Promotion added!\n"));
 		}
 
+	}
+
+	public static String retrieveAllPromoItems(ArrayList<Promotions> promoList) {
+		String output = "";
+
+		for (Promotions pr : promoList) {
+			output += String.format("%-15d %-15d %-15s %-10d %s\n", pr.getPromotionID(), pr.getStallID(),
+					pr.getfoodName(), pr.getPromotionPercent(), pr.getDOTW());
+		}
+		return output;
+	}
+
+	public static void deleteFromPromotions(ArrayList<Promotions> promoList, Promotions pr) {
+
+		for (int i = 0; i < promoList.size(); i++) {
+			if (promoList.get(i).getPromotionID() == pr.getPromotionID()) {
+				promoList.remove(i);
+			}
+			else {
+				System.out.println("Promotion does not exist");
+			}
+		}
 	}
 
 	// ================================================================== FOR MANAGE
