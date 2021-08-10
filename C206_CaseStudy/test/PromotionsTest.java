@@ -44,7 +44,7 @@ public class PromotionsTest {
 
 		String allPromotions = C206_CaseStudy.retrieveAllPromoItems(promoList);
 		String testOutput = "";
-		assertEquals("Check that promoList is empty", testOutput, allPromotions);
+		assertEquals("Test that promoList is empty", testOutput, allPromotions);
 
 		C206_CaseStudy.addPromotionItems(promoList, p1);
 		C206_CaseStudy.addPromotionItems(promoList, p2);
