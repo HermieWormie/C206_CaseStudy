@@ -80,7 +80,7 @@ public class PromotionsTest {
 
 		C206_CaseStudy.deleteFromPromotions(promoList, p1);
 		;
-		assertEquals("Test if that Promotions arraylist size is 1 after deleting?", 1, promoList.size());
+		assertEquals("Test if that Promotions arraylist size is 1 after deleting", 1, promoList.size());
 
 		allPromotions = C206_CaseStudy.retrieveAllPromoItems(promoList);
 
