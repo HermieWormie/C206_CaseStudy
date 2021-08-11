@@ -12,6 +12,11 @@ public class C206_CaseStudy {
 		ArrayList<Promotions> promoList = new ArrayList<Promotions>();
 		promoList.add(new Promotions(1, 6, "Laksa", 20, "Monday"));
 		promoList.add(new Promotions(2, 4, "Nasi Lemak", 10, "Tuesday"));
+		
+		// Stalls
+		ArrayList<Stalls> stallList = new ArrayList<Stalls>();
+		stallList.add(new Stalls(1,"Western","07-08-2021"));
+		stallList.add(new Stalls(2,"Halal","08-08-2021"));
 
 		int option = 0;
 
@@ -22,7 +27,7 @@ public class C206_CaseStudy {
 
 			if (option == 1) {
 				// Stalls
-				manageStalls();
+				manageStalls(stallList);
 			} else if (option == 2) {
 				// Food Items
 				manageFoodItems(itemsList);
@@ -65,9 +70,36 @@ public class C206_CaseStudy {
 	// ====================================================================== FOR
 	// MANAGE STALLS (DON)
 	// ===============================================================================
-	public static void manageStalls() {
+	public static void manageStalls(ArrayList<Stalls> stallList) {
+		int choice = -1;
+		while (choice != 4) {
+			setHeader("Manage Food Items");
+			System.out.println("1. View Stalls");
+			System.out.println("2. Add New Stalls");
+			System.out.println("3. Delete Stalls");
+			System.out.println("4. Back to Canteen Automation System (CAS)");
+			choice = Helper.readInt("Enter option > ");
+			System.out.println();
+			if (choice == 1) {
+				viewStalls(stallList);
+			} else if (choice == 2) {
 
+			} else if (choice == 3) {
+
+			} else if (choice == 4) {
+				System.out.println("Back to Home");
+			} else {
+				System.out.println("Invalid choice. Please try again");
+			}
+		}
 	}
+	
+	// ------------------------------------------------------------------------------------
+	public static void viewStalls(ArrayList<Stalls> stallList) {
+		// last stopped here as of 6.23pm 11/8/2021 - DON YEO
+	}
+	
+	
 
 	// ================================================================== FOR MANAGE
 	// FOOD ITEMS (WANYING)

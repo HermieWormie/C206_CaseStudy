@@ -1,11 +1,9 @@
-import java.util.Date;
-
 public class Stalls {
 	private int stallID;
-	private int stallName;
+	private String stallName;
 	private String operationDate;
 
-	public Stalls(int stallID, int stallName, String operationDate) {
+	public Stalls(int stallID, String stallName, String operationDate) {
 		this.stallID = stallID;
 		this.stallName = stallName;
 		this.operationDate = operationDate;
@@ -19,11 +17,11 @@ public class Stalls {
 		this.stallID = stallID;
 	}
 
-	public int getStallName() {
+	public String getStallName() {
 		return stallName;
 	}
 
-	public void setStallName(int stallName) {
+	public void setStallName(String stallName) {
 		this.stallName = stallName;
 	}
 

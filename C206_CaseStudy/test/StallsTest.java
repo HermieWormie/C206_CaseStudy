@@ -19,18 +19,33 @@ public class StallsTest {
 	@Before
 	public void setUp() throws Exception {
 		stall1 = new Stalls(1,"Western","07-08-2021");
+		stall2 = new Stalls(2,"Halal","08-08-2021");
+		
+		stallList = new ArrayList<Stalls>();
 		
 	}
 
 
 	@Test
-	public void c206_test() {
-		//fail("Not yet implemented"); 
-		assertTrue("C206_CaseStudy_SampleTest ",true);
+	public void testAddStalls() {
+		assertNotNull("Test if there is valid Stalls added to the arraylist to add to" , stallList);
+		
+		// last stopped here as of 6.23pm 11/8/2021 - DON YEO
+	}
+	
+	public void testViewAllStalls() {
+		
+	}
+	
+	public void testDeleteStalls() {
+		
 	}
 	
 	@After
 	public void tearDown() throws Exception {
+		stall1 = null;
+		stall2 = null;
+		stallList = null;
 	}
 
 }
