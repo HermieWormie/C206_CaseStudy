@@ -1,13 +1,25 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class StallsTest {
-
+	private Stalls stall1;
+	private Stalls stall2;
+	
+	private ArrayList<Stalls> stallList;
+	
+	public StallsTest() {
+		super();
+	}
+	
 	@Before
 	public void setUp() throws Exception {
+		stall1 = new Stalls(1,"Western","07-08-2021");
+		
 	}
 
 

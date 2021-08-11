@@ -3,9 +3,9 @@ import java.util.Date;
 public class Stalls {
 	private int stallID;
 	private int stallName;
-	private Date operationDate;
+	private String operationDate;
 
-	public Stalls(int stallID, int stallName, Date operationDate) {
+	public Stalls(int stallID, int stallName, String operationDate) {
 		this.stallID = stallID;
 		this.stallName = stallName;
 		this.operationDate = operationDate;
@@ -27,11 +27,11 @@ public class Stalls {
 		this.stallName = stallName;
 	}
 
-	public Date getOperationDate() {
+	public String getOperationDate() {
 		return operationDate;
 	}
 
-	public void setOperationDate(Date operationDate) {
+	public void setOperationDate(String operationDate) {
 		this.operationDate = operationDate;
 	}
 	
