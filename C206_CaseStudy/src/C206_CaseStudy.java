@@ -30,7 +30,7 @@ public class C206_CaseStudy {
 				manageStalls(stallList);
 			} else if (option == 2) {
 				// Food Items
-				manageFoodItems(itemsList);
+				//manageFoodItems(itemsList);
 			} else if (option == 3) {
 				// Purchase Orders
 				managePurchaseOrders();
