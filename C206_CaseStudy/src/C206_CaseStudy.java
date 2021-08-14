@@ -99,7 +99,7 @@ public class C206_CaseStudy {
 		// last stopped here as of 6.23pm 11/8/2021 - DON YEO
 	}
 
-	// ================================================================== FOR MANAGE 
+	// ================================= ================================= FOR MANAGE 
 	// FOOD ITEMS (WANYING)
 	//================================================================
 	public static void manageFoodItems(ArrayList<FoodItems> itemsList) {
