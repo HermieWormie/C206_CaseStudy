@@ -303,7 +303,7 @@ public class C206_CaseStudy {
 	public static String retrieveAllPromoItems(ArrayList<Promotions> promoList) {
 		String output = "";
 
-		for (Promotions pr : promoList) {
+		for (Promotions pr : promoList) {s
 			output += String.format("%-15d %-15d %-15s %-10d %s\n", pr.getPromotionID(), pr.getStallID(),
 					pr.getfoodName(), pr.getPromotionPercent(), pr.getDOTW());
 		}
