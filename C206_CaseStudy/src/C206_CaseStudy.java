@@ -27,7 +27,7 @@ public class C206_CaseStudy {
 
 			if (option == 1) {
 				// Stalls
-				// manageStalls(stallList);
+				 manageStalls(stallList);
 			} else if (option == 2) {
 				// Food Items
 				manageFoodItems(itemsList);
@@ -83,9 +83,10 @@ public class C206_CaseStudy {
 			if (choice == 1) {
 				viewStalls(stallList);
 			} else if (choice == 2) {
-
+				Stalls s = inputStalls(stallList);
+				addStalls(stallList,s);
 			} else if (choice == 3) {
-
+				deleteStalls(stallList);
 			} else if (choice == 4) {
 				System.out.println("Back to Home");
 			} else {
@@ -95,9 +96,70 @@ public class C206_CaseStudy {
 	}
 
 	// ------------------------------------------------------------------------------------
-	public static void viewStalls(ArrayList<Stalls> stallList) {
-		// last stopped here as of 6.23pm 11/8/2021 - DON YEO
-	}
+		public static String retrieveAllStalls(ArrayList<Stalls> stallList) {
+			String output = "";
+
+			for (Stalls s : stallList) {
+				output += String.format("%-10d %-15s %-20s\n", s.getStallID(), s.getStallName(), s.getOperationDate());
+			}
+			return output;
+		}
+
+		// ------------------------------------------------------------------------------------
+		public static void viewStalls(ArrayList<Stalls> stallList) {
+			String output = String.format("%-10s %-15s %-20s\n", "STALL ID", "NAME", "OP DATE");
+			if (stallList.size() == 0) {
+				output = "There are no stalls available at the moment";
+			} else {
+				output += retrieveAllStalls(stallList);
+			}
+			System.out.println(output);
+		}
+		// ------------------------------------------------------------------------------------
+		public static Stalls inputStalls(ArrayList<Stalls> stallList) {
+			String name = Helper.readString("Enter Name > ");
+			String date = "15-8-2021";
+
+			if (name!=null && stallList.size() < 9) {
+				Stalls s = new Stalls(stallList.size() + 1, name, date);
+				return s;
+			} else {
+				return null;
+			}
+		}
+
+		public static void addStalls(ArrayList<Stalls> stallList, Stalls s) {
+			if (s == null) {
+				System.out.println("Stall has reached the maximum number");
+			} else {
+				stallList.add(s);
+				System.out.println(String.format("Stall added!\n"));
+			}
+
+		}
+		// ------------------------------------------------------------------------------------
+		public static void deleteStalls(ArrayList<Stalls> stallList) {
+			int id = Helper.readInt("Enter Stall ID to delete > ");
+			boolean match = false;
+			for (int i = 0; i < stallList.size(); i++) {
+				if (stallList.get(i).getStallID() == id) {
+					stallList.remove(i);
+					match = true;
+				}
+			}
+			if (!match) {
+				System.out.println("Invalid Stall ID entered!");
+			} else {
+				for (Stalls s : stallList) {
+					if (s.getStallID() > id) {
+						s.setStallID(s.getStallID() - 1);
+					}
+				}
+				System.out.println("Stall ID " + id + " Deleted!");
+			}
+
+		}
+
 
 	// ================================= ================================= FOR MANAGE 
 	// FOOD ITEMS (WANYING)
