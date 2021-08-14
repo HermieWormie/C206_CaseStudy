@@ -101,9 +101,9 @@ public class C206_CaseStudy {
 	
 	
 
-	// ================================================================== FOR MANAGE
-	// FOOD ITEMS (WANYING)
-	// ============================================================================
+	// ================================================================== FOR MANAGE 
+	// FOOD ITEMS (WANYING) 
+	//================================================================
 	public static void manageFoodItems(ArrayList<FoodItems> itemsList) {
 
 		int choice = -1;
@@ -198,14 +198,14 @@ public class C206_CaseStudy {
 	}
 
 	// ================================================================== FOR MANAGE
-	// FOOD ITEMS (EDISON)
+	// PURCHASE ORDERS (EDISON)
 	// ============================================================================
 	public static void managePurchaseOrders() {
 
 	}
 
 	// ================================================================== FOR MANAGE
-	// FOOD ITEMS (HERMAN)
+	// PROMOTIONS (HERMAN)
 	// ============================================================================
 	public static void managePromotions(ArrayList<Promotions> promoList) {
 		int choice = -1;
@@ -325,7 +325,7 @@ public class C206_CaseStudy {
 	}
 
 	// ================================================================== FOR MANAGE
-	// FOOD ITEMS (SARA)
+	// ORDERS (SARA)
 	// ============================================================================
 	public static void manageOrders() {
 
