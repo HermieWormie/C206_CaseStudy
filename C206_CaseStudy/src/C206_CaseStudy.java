@@ -73,7 +73,7 @@ public class C206_CaseStudy {
 	public static void manageStalls(ArrayList<Stalls> stallList) {
 		int choice = -1;
 		while (choice != 4) {
-			setHeader("Manage Food Items");
+			setHeader("Manage Stalls");
 			System.out.println("1. View Stalls");
 			System.out.println("2. Add New Stalls");
 			System.out.println("3. Delete Stalls");
