@@ -27,7 +27,7 @@ public class C206_CaseStudy {
 
 			if (option == 1) {
 				// Stalls
-				//manageStalls(stallList);
+				// manageStalls(stallList);
 			} else if (option == 2) {
 				// Food Items
 				manageFoodItems(itemsList);
