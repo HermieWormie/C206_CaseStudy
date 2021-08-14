@@ -4,15 +4,15 @@ public class Orders {
 	private int orderId;
 	private String customerId;
 	private String orderDate;
-	private String items;
+	private String foodName;
 	private int quantity;
 	
-	public Orders(int orderId, String customerId, String orderDate, String items, int quantity) {
+	public Orders(int orderId, String customerId, String orderDate, String foodName, int quantity) {
 		super();
 		this.orderId = orderId;
 		this.customerId = customerId;
 		this.orderDate = orderDate;
-		this.items = items;
+		this.foodName = foodName;
 		this.quantity = quantity;
 	}
 	
@@ -43,12 +43,12 @@ public class Orders {
 		this.orderDate = orderDate;
 	}
 
-	public String getItems() {
-		return items;
+	public String getFoodName() {
+		return foodName;
 	}
 
-	public void setItems(String items) {
-		this.items = items;
+	public void setFoodName(String foodName) {
+		this.foodName = foodName;
 	}
 
 	public int getQuantity() {
@@ -61,7 +61,8 @@ public class Orders {
 
 	public String toString() {
 		String output = "";
-		output += String.format("%-15s %-20s %-15s", customerId, orderDate, items);
+		output += String.format("%-15d %-15d %-15s %-10d %s\n", orderId, customerId,
+				orderDate, foodName, quantity);
 		return output;
 	}
 	
