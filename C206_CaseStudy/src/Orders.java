@@ -1,17 +1,31 @@
-import java.util.ArrayList;
 
 public class Orders {
 	
+	private int orderId;
 	private String customerId;
 	private String orderDate;
-	private ArrayList<FoodItems> items;
+	private String items;
+	private int quantity;
 	
-	public Orders(String customerId, String orderDate, ArrayList<FoodItems> items) {
+	public Orders(int orderId, String customerId, String orderDate, String items, int quantity) {
 		super();
+		this.orderId = orderId;
 		this.customerId = customerId;
 		this.orderDate = orderDate;
 		this.items = items;
+		this.quantity = quantity;
 	}
+	
+
+	public int getOrderId() {
+		return orderId;
+	}
+
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+
 
 	public String getCustomerId() {
 		return customerId;
@@ -29,14 +43,22 @@ public class Orders {
 		this.orderDate = orderDate;
 	}
 
-	public ArrayList<FoodItems> getItems() {
+	public String getItems() {
 		return items;
 	}
 
-	public void setItems(ArrayList<FoodItems> items) {
+	public void setItems(String items) {
 		this.items = items;
 	}
-	
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	public String toString() {
 		String output = "";
 		output += String.format("%-15s %-20s %-15s", customerId, orderDate, items);
