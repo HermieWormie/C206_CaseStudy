@@ -100,7 +100,7 @@ public class C206_CaseStudy {
 	}
 
 	// ================================================================== FOR MANAGE 
-	// FOOD ITEMS (WANYING) 
+	// FOOD ITEMS (WANYING)
 	//================================================================
 	public static void manageFoodItems(ArrayList<FoodItems> itemsList) {
 
