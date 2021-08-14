@@ -35,7 +35,7 @@ public class C206_CaseStudy {
 				// Purchase Orders
 				managePurchaseOrders();
 			} else if (option == 4) {
-				// Promotionss
+				// Promotions
 				managePromotions(promoList);
 			} else if (option == 5) {
 				// Orders
