@@ -12,11 +12,11 @@ public class C206_CaseStudy {
 		ArrayList<Promotions> promoList = new ArrayList<Promotions>();
 		promoList.add(new Promotions(1, 6, "Laksa", 20, "Monday"));
 		promoList.add(new Promotions(2, 4, "Nasi Lemak", 10, "Tuesday"));
-		
+
 		// Stalls
 		ArrayList<Stalls> stallList = new ArrayList<Stalls>();
-		stallList.add(new Stalls(1,"Western","07-08-2021"));
-		stallList.add(new Stalls(2,"Halal","08-08-2021"));
+		stallList.add(new Stalls(1, "Western", "07-08-2021"));
+		stallList.add(new Stalls(2, "Halal", "08-08-2021"));
 
 		int option = 0;
 
@@ -93,13 +93,11 @@ public class C206_CaseStudy {
 			}
 		}
 	}
-	
+
 	// ------------------------------------------------------------------------------------
 	public static void viewStalls(ArrayList<Stalls> stallList) {
 		// last stopped here as of 6.23pm 11/8/2021 - DON YEO
 	}
-	
-	
 
 	// ================================================================== FOR MANAGE
 	// FOOD ITEMS (WANYING)
@@ -254,16 +252,16 @@ public class C206_CaseStudy {
 		int stall = Helper.readInt("Enter Stall ID > ");
 		int percentage = Helper.readInt("Enter discount percentage > ");
 		String day = Helper.readString("Enter day of the week > ");
-		boolean flag = false;
+		boolean flag = true;
 		Promotions pr = new Promotions(promoList.size() + 1, stall, name, percentage, day);
 
 		for (int i = 0; i < promoList.size(); i++) {
-			if (!(promoList.get(i).getStallID() == stall) && !(day.equalsIgnoreCase(promoList.get(i).getDOTW()))) {
-				flag = true;
-				return pr;
+			if (promoList.get(i).getStallID() == pr.getStallID()
+					&& promoList.get(i).getDOTW().equalsIgnoreCase(pr.getDOTW())) {
+				flag = false;
 			}
 		}
-		if (flag = false) {
+		if (flag == false) {
 			pr = null;
 		}
 		return pr;
@@ -294,7 +292,7 @@ public class C206_CaseStudy {
 
 	public static void addPromotionItems(ArrayList<Promotions> promoList, Promotions pr) {
 		if (pr == null) {
-			System.out.println("Each stall can only have one promotion at a time!");
+			System.out.println("Each stall can only have one promotion on a single day!");
 		} else {
 			promoList.add(pr);
 			System.out.println(String.format("Promotion added!\n"));
@@ -317,8 +315,7 @@ public class C206_CaseStudy {
 		for (int i = 0; i < promoList.size(); i++) {
 			if (promoList.get(i).getPromotionID() == pr.getPromotionID()) {
 				promoList.remove(i);
-			}
-			else {
+			} else {
 				System.out.println("Promotion does not exist");
 			}
 		}
