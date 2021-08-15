@@ -37,7 +37,7 @@ public class C206_CaseStudy {
 				manageFoodItems(itemsList);
 			} else if (option == 3) {
 				// Purchase Orders
-				managePurchaseOrders();
+				managePurchaseOrders(pOrdersList);
 			} else if (option == 4) {
 				// Promotions
 				managePromotions(promoList);
@@ -264,9 +264,95 @@ public class C206_CaseStudy {
 	// ================================================================== FOR MANAGE
 	// PURCHASE ORDERS (EDISON)
 	// ============================================================================
-	public static void managePurchaseOrders() {
+	public static void managePurchaseOrders(ArrayList<PurchaseOrders> pOrdersList) {
+		int choice = -1;
+		while (choice != 4) {
+			setHeader("Manage Purchase Orders");
+			System.out.println("1. View Purchase Orders");
+			System.out.println("2. Add Purchase Orders");
+			System.out.println("3. Delete Purchase Orders");
+			System.out.println("4. Back to Canteen Automation System(CAS)");
+			choice = Helper.readInt("Enter option > ");
+			System.out.println();
+			
+			if (choice == 1) {
+				viewPurchaseOrders(pOrdersList);
+			} else if (choice == 2) {
+				PurchaseOrders pOrders = inputPurchaseOrders(pOrdersList);
+				addPurchaseOrders(pOrdersList, pOrders);
+			} else if (choice == 3) {
+				viewPurchaseOrders(pOrdersList);
+				deletePurchaseOrders(pOrdersList);
+			} else if (choice == 4) {
+				System.out.println("Back to Home");
+			} else {
+				System.out.println("Invalid choice. Please try again");
+			}
+		}
 
 	}
+	
+	public static String retrieveAllPurchaseOrders(ArrayList<PurchaseOrders> pOrdersList) {
+		String output = "";
+
+		for (PurchaseOrders pOrders : pOrdersList) {
+			output += String.format("%-10s %-15s %-15s\n", pOrders.getPOrdersID(), pOrders.getIngredientName(), pOrders.getQuantity());
+		}
+		return output;
+	}
+	
+	public static void viewPurchaseOrders(ArrayList<PurchaseOrders> pOrdersList) {
+		String output = String.format("%-15s %-15s %-15s\n", "PURCHASE ORDERS ID", "INGREDIENTS", "QUANTITY");
+		
+		for (PurchaseOrders pOrders : pOrdersList) {
+			if (pOrdersList.size() == 0) {
+				output = "There are no purchase orders available.";
+			} else {
+				output += String.format("%-15d %-15d %-15s\n", pOrders.getPOrdersID(), pOrders.getIngredientName(),
+						pOrders.getQuantity());
+			}
+		}
+		System.out.println(output);
+	}
+	
+	public static PurchaseOrders inputPurchaseOrders(ArrayList<PurchaseOrders> pOrdersList) {
+		String name = Helper.readString("Enter Ingredient Name > ");
+		int quantity = Helper.readInt("Enter quantity > ");
+
+		if (quantity > 0) {
+			PurchaseOrders pOrders = new PurchaseOrders(pOrdersList.size() + 1, quantity, name);
+			return pOrders;
+		} else {
+			return null;
+		}
+	}
+	
+	public static void addPurchaseOrders(ArrayList<PurchaseOrders> pOrdersList, PurchaseOrders pOrders) {
+		pOrdersList.add(pOrders);
+		System.out.println(String.format("Purchase Order added!\n"));
+	}
+	
+	public static void deletePurchaseOrders(ArrayList<PurchaseOrders> pOrdersList) {
+		int id = Helper.readInt("Enter Purchase Order ID to delete > ");
+		boolean match = false;
+		for (int i = 0; i < pOrdersList.size(); i++) {
+			if (pOrdersList.get(i).getPOrdersID() == id) {
+				pOrdersList.remove(i);
+				match = true;
+			}
+		}
+		if (!match) {
+			System.out.println("Invalid Purchase Order ID entered!");
+		} else {
+			for (PurchaseOrders pOrders : pOrdersList) {
+				if (pOrders.getPOrdersID() > id) {
+					pOrders.setPOrdersID(pOrders.getPOrdersID() - 1);
+				}
+			}
+			System.out.println("Purchase Order ID " + id + " Deleted!");
+		}
+
+}
 
 	// ================================================================== FOR MANAGE
 	// PROMOTIONS (HERMAN)
