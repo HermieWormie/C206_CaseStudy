@@ -20,6 +20,9 @@ public class C206_CaseStudy {
 		
 		// Orders
 		ArrayList<Orders> ordersList = new ArrayList<Orders>();
+		
+		//PurchaseOrders
+		ArrayList<PurchaseOrders> pOrdersList = new ArrayList<PurchaseOrders>();
 
 
 		int option = 0;
