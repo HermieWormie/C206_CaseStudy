@@ -54,8 +54,8 @@ public class OrdersTest {
 
 		allOrders = C206_CaseStudy.retrieveAllOrders(ordersList);
 
-		testOutput = String.format("%-15d %-15d %-15s %-10d %s\n", 1, "122", "16/8/2021", "Laksa", 3);
-		testOutput += String.format("%-15d %-15d %-15s %-10d %s\n", 2, "123", "16/8/2021", "Nasi Lemak", 1);
+		testOutput = String.format("%-10s %-15s %-15s %-15s %-15s\n", 1, "122", "16/8/2021", "Laksa", 3);
+		testOutput += String.format("%-10s %-15s %-15s %-15s %-15s\n", 2, "123", "16/8/2021", "Nasi Lemak", 1);
 
 		assertEquals("Test if the added orders are matching with the orders in ordersList ", testOutput, allOrders);
 
@@ -75,18 +75,17 @@ public class OrdersTest {
 
 		allOrders = C206_CaseStudy.retrieveAllOrders(ordersList);
 
-		testOutput = String.format("%-15d %-15d %-15s %-10d %s\n", 1, "122", "16/8/2021", "Laksa", 20);
-		testOutput += String.format("%-15d %-15d %-15s %-10d %s\n", 2, "123", "16/8/2021", "Nasi Lemak", 10);
+		testOutput = String.format("%-10s %-15s %-15s %-15s %-15s\n", 1, "122", "16/8/2021", "Laksa", 3);
+		testOutput += String.format("%-10s %-15s %-15s %-15s %-15s\n", 2, "123", "16/8/2021", "Nasi Lemak", 1);
 
 		assertEquals("Check that ordersList is updated with orders after adding", testOutput, allOrders);
 
-		C206_CaseStudy.deleteFromOrders(ordersList, o1);
-		;
+		ordersList.remove(0);
 		assertEquals("Test if that orders arraylist size is 1 after deleting", 1, ordersList.size());
 
 		allOrders = C206_CaseStudy.retrieveAllOrders(ordersList);
 
-		String deleteTest = String.format("%-15d %-15d %-15s %-10d %s\n", 2, "123", "16/8/2021", "Nasi Lemak", 10);
+		String deleteTest = String.format("%-10s %-15s %-15s %-15s %-15s\n", 2, "123", "16/8/2021", "Nasi Lemak", 1);
 		assertEquals("Test if o1 is deleted and if only o2 is left in ordersList", deleteTest, allOrders);
 	}
 

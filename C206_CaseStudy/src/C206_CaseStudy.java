@@ -17,6 +17,10 @@ public class C206_CaseStudy {
 		ArrayList<Stalls> stallList = new ArrayList<Stalls>();
 		stallList.add(new Stalls(1, "Western", "07-08-2021"));
 		stallList.add(new Stalls(2, "Halal", "08-08-2021"));
+		
+		// Orders
+		ArrayList<Orders> ordersList = new ArrayList<Orders>();
+
 
 		int option = 0;
 
@@ -39,7 +43,7 @@ public class C206_CaseStudy {
 				managePromotions(promoList);
 			} else if (option == 5) {
 				// Orders
-				manageOrders();
+				manageOrders(ordersList);
 			} else if (option == 6) {
 				System.out.println("Thanks for using this application!");
 			} else {
@@ -324,7 +328,104 @@ public class C206_CaseStudy {
 	// ================================================================== FOR MANAGE
 	// ORDERS (SARA)
 	// ============================================================================
-	public static void manageOrders() {
+	public static void manageOrders(ArrayList<Orders> ordersList) {
+		int choice = -1;
+		while (choice != 4) {
+
+			setHeader("Manage Orders");
+			System.out.println("1. View Orders");
+			System.out.println("2. Add Orders");
+			System.out.println("3. Delete Orders");
+			System.out.println("4. Back to Canteen Automation System (CAS)");
+			choice = Helper.readInt("Enter option > ");
+			System.out.println();
+			
+			if (choice == 1) {
+				viewOrders(ordersList);
+			} else if (choice == 2) {
+				Orders o = inputOrders(ordersList);
+				addOrders(ordersList, o);
+			} else if (choice == 3) {
+				viewOrders(ordersList);
+				deleteOrders(ordersList);
+			} else if (choice == 4) {
+				System.out.println("Back to Home");
+			} else {
+				System.out.println("Invalid choice. Please try again");
+			}
+		}
+	}
+
+	// ============================================================================	
+
+	public static String retrieveAllOrders(ArrayList<Orders> ordersList) {
+		String output = "";
+
+		for (Orders o : ordersList) {
+			output += String.format("%-10s %-15s %-15s %-15s %-15s\n", o.getOrderId(), o.getCustomerId(),
+					o.getOrderDate(), o.getFoodName(), o.getQuantity());
+		}
+		return output;
+	}
+
+	
+	public static void viewOrders(ArrayList<Orders> ordersList) {
+		String output = String.format("%-10s %-15s %-15s %-15s %-15s\n", "ORDER ID", "CUSTOMER ID", 
+				"ORDER DATE", "FOOD NAME", "QUANTITY");
+
+		if (ordersList.size() == 0) {
+			output = "There are no orders.";
+		} else {
+			output += retrieveAllOrders(ordersList);
+		}
+		System.out.println(output);
+	}
+
+	// ============================================================================
+
+	public static Orders inputOrders(ArrayList<Orders> ordersList) {
+		
+		String customerId = Helper.readString("Enter staff/student ID > ");
+		String orderDate = Helper.readString("Enter date (dd/mm/yyyy) > ");
+		String foodName = Helper.readString("Enter food name > ");
+		int quantity = Helper.readInt("Enter quantity > ");	
+		
+		if (quantity > 0) {
+			Orders o = new Orders(ordersList.size() + 1, customerId, orderDate, foodName, quantity);
+			return o;
+		} else {
+			return null;
+		}
+	}
+
+	public static void addOrders(ArrayList<Orders> ordersList, Orders o) {
+		ordersList.add(o);
+		System.out.println(String.format("Order added!\n"));
+		
+	}
+
+
+	// ============================================================================
+
+	public static void deleteOrders(ArrayList<Orders> ordersList) {
+		int id = Helper.readInt("Enter Order ID to delete > ");
+		boolean match = false;
+		for (int i = 0; i < ordersList.size(); i++) {
+			if (ordersList.get(i).getOrderId() == id) {
+				ordersList.remove(i);
+				match = true;
+			}
+		}
+		if (!match) {
+			System.out.println("Invalid Order ID entered!");
+		} else {
+			for (Orders o : ordersList) {
+				if (o.getOrderId() > id) {
+					o.setOrderId(o.getOrderId() - 1);
+				}
+			}
+			System.out.println("Order ID " + id + " Deleted!");
+		}
 
 	}
 }
