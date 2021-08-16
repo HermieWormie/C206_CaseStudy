@@ -393,7 +393,7 @@ public class C206_CaseStudy {
 
 		for (Promotions pr : promoList) {
 			if (promoList.size() == 0) {
-				output = "There are no food items available.";
+				output = "There are no promotions available.";
 			} else {
 				output += String.format("%-15d %-15d %-15s %-10d %s\n", pr.getPromotionID(), pr.getStallID(),
 						pr.getfoodName(), pr.getPromotionPercent(), pr.getDOTW());
