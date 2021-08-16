@@ -76,15 +76,15 @@ public class FoodItemsTest {
 		//after adding 2 items check the foodlist size is 2
 		C206_CaseStudy.addFoodItems(itemsList, fi1);
 		C206_CaseStudy.addFoodItems(itemsList, fi2);
-		assertEquals("Test if that Camcorder arraylist size is 2?", 2, itemsList.size());
+		assertEquals("Test if that Food Items arraylist size is 2?", 2, itemsList.size());
 		
 		//after removing one item, check size of foodlist becomes 1
 		itemsList.remove(0);
-		assertEquals("Test if that Camcorder arraylist size is 1?", 1, itemsList.size());
+		assertEquals("Test if that Food Items arraylist size is 1?", 1, itemsList.size());
 		
 		//remove another item, list size becomes 0
 		itemsList.remove(0);
-		assertEquals("Test if that Camcorder arraylist size is 0?", 0, itemsList.size());
+		assertEquals("Test if that Food Items arraylist size is 0?", 0, itemsList.size());
 	}
 	
 	@After
